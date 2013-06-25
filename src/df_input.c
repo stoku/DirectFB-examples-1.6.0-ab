@@ -339,12 +339,17 @@ show_mouse_buttons (DFBInputEvent *evt)
                                buttons[i].x, y, DSTF_LEFT );
      }
 
-     if (mouse_x_max > 0 || mouse_y_max > 0)
-          snprintf( str, sizeof(str), "(%d/%d,%d/%d)", 
-                    mouse_x, mouse_x_max, mouse_y, mouse_y_max);
+     if (mouse_x_min < mouse_x_max)
+          snprintf( str, sizeof(str), "(%d/%d,", mouse_x, mouse_x_max );
      else
-          snprintf( str, sizeof(str), "(%d,%d)", 
-                    mouse_x, mouse_y); 
+          snprintf( str, sizeof(str), "(%d,", mouse_x );
+
+     i = strlen(str);
+     if (mouse_y_min < mouse_y_max)
+          snprintf( str + i, sizeof(str) - i, "%d/%d)", mouse_y, mouse_y_max );
+     else
+          snprintf( str + i, sizeof(str) - i, "%d)", mouse_y );
+
      primary->SetFont( primary, font_small );
      font_small->GetStringWidth( font_small, str, -1, &width );
      primary->SetColor( primary, 0xF0, 0xF0, 0xF0, 0xFF );
@@ -393,10 +398,12 @@ show_mouse_event( DFBInputEvent *evt )
           else if (evt->flags & DIEF_AXISREL) {
                switch (evt->axis) {
                case DIAI_X:
- 	            mouse_x += evt->axisrel;
+ 	            mouse_x = adjusted_mouse_x + evt->axisrel;
+                    mouse_x_min = mouse_x_max = -1;
                     break;
                case DIAI_Y:
-                    mouse_y += evt->axisrel;
+                    mouse_y = adjusted_mouse_y + evt->axisrel;
+                    mouse_y_min = mouse_y_max = -1;
                     break;
                case DIAI_Z:
                     snprintf (buf, sizeof(buf),
@@ -411,14 +418,19 @@ show_mouse_event( DFBInputEvent *evt )
           }
 
           /* Touchpad axis range may not be the same as screen size */
-	  if ((mouse_y_min < mouse_y_max) && (mouse_x_min < mouse_x_max)) {
+	  if (mouse_x_min < mouse_x_max) {
 	       adjusted_mouse_x = CLAMP (mouse_x, 0, mouse_x_max);
-	       adjusted_mouse_y = CLAMP (mouse_y, 0, mouse_y_max);
 	       adjusted_mouse_x = ((screen_width  - 1) * adjusted_mouse_x) / mouse_x_max;
+          }
+          else {
+               adjusted_mouse_x = mouse_x = CLAMP (mouse_x, 0, screen_width  - 1);
+          }
+
+          if (mouse_y_min < mouse_y_max) {
+	       adjusted_mouse_y = CLAMP (mouse_y, 0, mouse_y_max);
 	       adjusted_mouse_y = ((screen_height - 1) * adjusted_mouse_y) / mouse_y_max;
           } else {
-               adjusted_mouse_x = CLAMP (mouse_x, 0, screen_width  - 1);
-               adjusted_mouse_y = CLAMP (mouse_y, 0, screen_height - 1);
+               adjusted_mouse_y = mouse_y = CLAMP (mouse_y, 0, screen_height - 1);
           }
      }
      else {  /* BUTTON_PRESS or BUTTON_RELEASE */
