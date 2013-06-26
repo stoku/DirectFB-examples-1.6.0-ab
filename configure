@@ -604,6 +604,70 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
 DATADIR
+SPACEDREAM_FALSE
+SPACEDREAM_TRUE
+DF_NEO_FALSE
+DF_NEO_TRUE
+DF_KNUCKLES_FALSE
+DF_KNUCKLES_TRUE
+VE_TEST_FALSE
+VE_TEST_TRUE
+PSS_FALSE
+PSS_TRUE
+DF_WINDOW_FALSE
+DF_WINDOW_TRUE
+DF_VIDEO_PARTICLE_FALSE
+DF_VIDEO_PARTICLE_TRUE
+DF_VIDEO_FALSE
+DF_VIDEO_TRUE
+DF_TEXTURE3D_FALSE
+DF_TEXTURE3D_TRUE
+DF_TEXTURE_FALSE
+DF_TEXTURE_TRUE
+DF_STRESS_FALSE
+DF_STRESS_TRUE
+DF_PORTER_FALSE
+DF_PORTER_TRUE
+DF_PARTICLE_FALSE
+DF_PARTICLE_TRUE
+DF_PALETTE_FALSE
+DF_PALETTE_TRUE
+DF_NETLOAD_FALSE
+DF_NETLOAD_TRUE
+DF_MATRIX_WATER_FALSE
+DF_MATRIX_WATER_TRUE
+DF_MATRIX_FALSE
+DF_MATRIX_TRUE
+DF_LAYER_FALSE
+DF_LAYER_TRUE
+DF_JOYSTICK_FALSE
+DF_JOYSTICK_TRUE
+DF_INPUT_FALSE
+DF_INPUT_TRUE
+DF_FONTS_FALSE
+DF_FONTS_TRUE
+DF_FLIP_FALSE
+DF_FLIP_TRUE
+DF_FIRE_FALSE
+DF_FIRE_TRUE
+DF_DRIVERTEST2_FALSE
+DF_DRIVERTEST2_TRUE
+DF_DRIVERTEST_FALSE
+DF_DRIVERTEST_TRUE
+DF_DOK_FALSE
+DF_DOK_TRUE
+DF_DIOLOAD_FALSE
+DF_DIOLOAD_TRUE
+DF_DATABUFFER_FALSE
+DF_DATABUFFER_TRUE
+DF_CPULOAD_FALSE
+DF_CPULOAD_TRUE
+DF_BLTLOAD_FALSE
+DF_BLTLOAD_TRUE
+DF_ANDI3D_FALSE
+DF_ANDI3D_TRUE
+DF_ANDI_FALSE
+DF_ANDI_TRUE
 HAVE_STEREO_API_FALSE
 HAVE_STEREO_API_TRUE
 WATER_RUNS_FALSE
@@ -711,6 +775,7 @@ enable_option_checking
 enable_maintainer_mode
 enable_dependency_tracking
 enable_debug
+with_apps
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1349,6 +1414,12 @@ Optional Features:
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-debug          turn on debugging default=no
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-apps=LIST        LIST is a comma separated selection of applications
+                          to build. [default=all]
 
 Some influential environment variables:
   CC          C compiler command
@@ -4291,6 +4362,403 @@ else
 fi
 
 
+
+# Check whether --with-apps was given.
+if test "${with_apps+set}" = set; then :
+  withval=$with_apps; apps="$withval"
+else
+  apps=all
+fi
+
+
+df_andi=no
+df_andi3d=no
+df_bltload=no
+df_cpuload=no
+df_databuffer=no
+df_dioload=no
+df_dok=no
+df_drivertest=no
+df_drivertest2=no
+df_fire=no
+df_flip=no
+df_fonts=no
+df_input=no
+df_joystick=no
+df_layer=no
+df_matrix=no
+df_matrix_water=no
+df_netload=no
+df_palette=no
+df_particle=no
+df_porter=no
+df_stress=no
+df_texture=no
+df_texture3d=no
+df_video=no
+df_video_particle=no
+df_window=no
+pss=no
+ve_test=no
+df_knuckles=no
+df_neo=no
+spacedream=no
+
+if test "$apps" = "all"; then
+	df_andi=yes
+	df_andi3d=yes
+	df_bltload=yes
+	df_cpuload=yes
+	df_databuffer=yes
+	df_dioload=yes
+	df_dok=yes
+	df_drivertest=yes
+	df_drivertest2=yes
+	df_fire=yes
+	df_flip=yes
+	df_fonts=yes
+	df_input=yes
+	df_joystick=yes
+	df_layer=yes
+	df_matrix=yes
+	df_matrix_water=yes
+	df_netload=yes
+	df_palette=yes
+	df_particle=yes
+	df_porter=yes
+	df_stress=yes
+	df_texture=yes
+	df_texture3d=yes
+	df_video=yes
+	df_video_particle=yes
+	df_window=yes
+	pss=yes
+	ve_test=yes
+	df_knuckles=yes
+	df_neo=yes
+	spacedream=yes
+
+elif test "$apps" != "none"; then
+	apps=`echo $apps | sed 's/,/ /g'`
+	for app in $apps; do
+		case "$app" in
+		df_andi) 		df_andi=yes;;
+		df_andi3d)		df_andi3d=yes;;
+		df_bltload)		df_bltfload=yes;;
+		df_cpuload)		df_cpuload=yes;;
+		df_databuffer)		df_databuffer=yes;;
+		df_dioload) 		df_dioload=yes;;
+		df_dok)			df_dok=yes;;
+		df_drivertest)		df_drivertest=yes;;
+		df_drivertest2)		df_drivertest2=yes;;
+		df_fire)		df_fire=yes;;
+		df_flip)		df_flip=yes;;
+		df_fonts)		df_fonts=yes;;
+		df_input)		df_input=yes;;
+		df_joystick)		df_joystick=yes;;
+		df_layer)		df_layer=yes;;
+		df_matrix)		df_matrix=yes;;
+		df_matrix_water)	df_matrix_water=yes;;
+		df_netload)		df_netload=yes;;
+		df_palette)		df_palette=yes;;
+		df_particle)		df_particle=yes;;
+		df_porter)		df_porter=yes;;
+		df_stress)		df_stress=yes;;
+		df_texture)		df_texture=yes;;
+		df_texture3d)		df_texture3d=yes;;
+		df_video)		df_video=yes;;
+		df_video_particle)	df_video_particle=yes;;
+		df_window)		df_window=yes;;
+		pss)			pss=yes;;
+		ve_test)		ve_test=yes;;
+		df_knuckles)		df_knuckles=yes;;
+		df_neo)			df_neo=yes;;
+		spacedream)		spacedream=yes;;
+		*)
+			{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Unknown app $app" >&5
+$as_echo "$as_me: WARNING: Unknown app $app" >&2;};;
+		esac
+	done
+fi
+
+if test "$STEREO_API" != "yes"; then
+	if test "$df_andi3d" = "yes"; then
+		df_andi3d=no
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: df_andi3d is excluded since stereo API is not supported" >&5
+$as_echo "$as_me: WARNING: df_andi3d is excluded since stereo API is not supported" >&2;}
+	fi
+	if test "$df_texture3d" = "yes"; then
+		df_texture3d=no
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: df_texture3d is excluded since stereo API is not supported" >&5
+$as_echo "$as_me: WARNING: df_texture3d is excluded since stereo API is not supported" >&2;}
+	fi
+fi
+
+if test "$WATER" != "runs"; then
+	if test "$df_matrix_water" = "yes"; then
+		df_matrix_water=no
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: df_matrix_water is excluded since water API is not supported" >&5
+$as_echo "$as_me: WARNING: df_matrix_water is excluded since water API is not supported" >&2;}
+	fi
+fi
+
+ if test "$df_andi" = "yes"; then
+  DF_ANDI_TRUE=
+  DF_ANDI_FALSE='#'
+else
+  DF_ANDI_TRUE='#'
+  DF_ANDI_FALSE=
+fi
+
+ if test "$df_andi3d" = "yes"; then
+  DF_ANDI3D_TRUE=
+  DF_ANDI3D_FALSE='#'
+else
+  DF_ANDI3D_TRUE='#'
+  DF_ANDI3D_FALSE=
+fi
+
+ if test "$df_bltload" = "yes"; then
+  DF_BLTLOAD_TRUE=
+  DF_BLTLOAD_FALSE='#'
+else
+  DF_BLTLOAD_TRUE='#'
+  DF_BLTLOAD_FALSE=
+fi
+
+ if test "$df_cpuload" = "yes"; then
+  DF_CPULOAD_TRUE=
+  DF_CPULOAD_FALSE='#'
+else
+  DF_CPULOAD_TRUE='#'
+  DF_CPULOAD_FALSE=
+fi
+
+ if test "$df_databuffer" = "yes"; then
+  DF_DATABUFFER_TRUE=
+  DF_DATABUFFER_FALSE='#'
+else
+  DF_DATABUFFER_TRUE='#'
+  DF_DATABUFFER_FALSE=
+fi
+
+ if test "$df_dioload" = "yes"; then
+  DF_DIOLOAD_TRUE=
+  DF_DIOLOAD_FALSE='#'
+else
+  DF_DIOLOAD_TRUE='#'
+  DF_DIOLOAD_FALSE=
+fi
+
+ if test "$df_dok" = "yes"; then
+  DF_DOK_TRUE=
+  DF_DOK_FALSE='#'
+else
+  DF_DOK_TRUE='#'
+  DF_DOK_FALSE=
+fi
+
+ if test "$df_drivertest" = "yes"; then
+  DF_DRIVERTEST_TRUE=
+  DF_DRIVERTEST_FALSE='#'
+else
+  DF_DRIVERTEST_TRUE='#'
+  DF_DRIVERTEST_FALSE=
+fi
+
+ if test "$df_drivertest2" = "yes"; then
+  DF_DRIVERTEST2_TRUE=
+  DF_DRIVERTEST2_FALSE='#'
+else
+  DF_DRIVERTEST2_TRUE='#'
+  DF_DRIVERTEST2_FALSE=
+fi
+
+ if test "$df_fire" = "yes"; then
+  DF_FIRE_TRUE=
+  DF_FIRE_FALSE='#'
+else
+  DF_FIRE_TRUE='#'
+  DF_FIRE_FALSE=
+fi
+
+ if test "$df_flip" = "yes"; then
+  DF_FLIP_TRUE=
+  DF_FLIP_FALSE='#'
+else
+  DF_FLIP_TRUE='#'
+  DF_FLIP_FALSE=
+fi
+
+ if test "$df_fonts" = "yes"; then
+  DF_FONTS_TRUE=
+  DF_FONTS_FALSE='#'
+else
+  DF_FONTS_TRUE='#'
+  DF_FONTS_FALSE=
+fi
+
+ if test "$df_input" = "yes"; then
+  DF_INPUT_TRUE=
+  DF_INPUT_FALSE='#'
+else
+  DF_INPUT_TRUE='#'
+  DF_INPUT_FALSE=
+fi
+
+ if test "$df_joystick" = "yes"; then
+  DF_JOYSTICK_TRUE=
+  DF_JOYSTICK_FALSE='#'
+else
+  DF_JOYSTICK_TRUE='#'
+  DF_JOYSTICK_FALSE=
+fi
+
+ if test "$df_layer" = "yes"; then
+  DF_LAYER_TRUE=
+  DF_LAYER_FALSE='#'
+else
+  DF_LAYER_TRUE='#'
+  DF_LAYER_FALSE=
+fi
+
+ if test "$df_matrix" = "yes"; then
+  DF_MATRIX_TRUE=
+  DF_MATRIX_FALSE='#'
+else
+  DF_MATRIX_TRUE='#'
+  DF_MATRIX_FALSE=
+fi
+
+ if test "$df_matrix_water" = "yes"; then
+  DF_MATRIX_WATER_TRUE=
+  DF_MATRIX_WATER_FALSE='#'
+else
+  DF_MATRIX_WATER_TRUE='#'
+  DF_MATRIX_WATER_FALSE=
+fi
+
+ if test "$df_netload" = "yes"; then
+  DF_NETLOAD_TRUE=
+  DF_NETLOAD_FALSE='#'
+else
+  DF_NETLOAD_TRUE='#'
+  DF_NETLOAD_FALSE=
+fi
+
+ if test "$df_palette" = "yes"; then
+  DF_PALETTE_TRUE=
+  DF_PALETTE_FALSE='#'
+else
+  DF_PALETTE_TRUE='#'
+  DF_PALETTE_FALSE=
+fi
+
+ if test "$df_particle" = "yes"; then
+  DF_PARTICLE_TRUE=
+  DF_PARTICLE_FALSE='#'
+else
+  DF_PARTICLE_TRUE='#'
+  DF_PARTICLE_FALSE=
+fi
+
+ if test "$df_porter" = "yes"; then
+  DF_PORTER_TRUE=
+  DF_PORTER_FALSE='#'
+else
+  DF_PORTER_TRUE='#'
+  DF_PORTER_FALSE=
+fi
+
+ if test "$df_stress" = "yes"; then
+  DF_STRESS_TRUE=
+  DF_STRESS_FALSE='#'
+else
+  DF_STRESS_TRUE='#'
+  DF_STRESS_FALSE=
+fi
+
+ if test "$df_texture" = "yes"; then
+  DF_TEXTURE_TRUE=
+  DF_TEXTURE_FALSE='#'
+else
+  DF_TEXTURE_TRUE='#'
+  DF_TEXTURE_FALSE=
+fi
+
+ if test "$df_texture3d" = "yes"; then
+  DF_TEXTURE3D_TRUE=
+  DF_TEXTURE3D_FALSE='#'
+else
+  DF_TEXTURE3D_TRUE='#'
+  DF_TEXTURE3D_FALSE=
+fi
+
+ if test "$df_video" = "yes"; then
+  DF_VIDEO_TRUE=
+  DF_VIDEO_FALSE='#'
+else
+  DF_VIDEO_TRUE='#'
+  DF_VIDEO_FALSE=
+fi
+
+ if test "$df_video_particle" = "yes"; then
+  DF_VIDEO_PARTICLE_TRUE=
+  DF_VIDEO_PARTICLE_FALSE='#'
+else
+  DF_VIDEO_PARTICLE_TRUE='#'
+  DF_VIDEO_PARTICLE_FALSE=
+fi
+
+ if test "$df_window" = "yes"; then
+  DF_WINDOW_TRUE=
+  DF_WINDOW_FALSE='#'
+else
+  DF_WINDOW_TRUE='#'
+  DF_WINDOW_FALSE=
+fi
+
+ if test "$pss" = "yes"; then
+  PSS_TRUE=
+  PSS_FALSE='#'
+else
+  PSS_TRUE='#'
+  PSS_FALSE=
+fi
+
+ if test "$ve_test" = "yes"; then
+  VE_TEST_TRUE=
+  VE_TEST_FALSE='#'
+else
+  VE_TEST_TRUE='#'
+  VE_TEST_FALSE=
+fi
+
+ if test "$df_knuckles" = "yes"; then
+  DF_KNUCKLES_TRUE=
+  DF_KNUCKLES_FALSE='#'
+else
+  DF_KNUCKLES_TRUE='#'
+  DF_KNUCKLES_FALSE=
+fi
+
+ if test "$df_neo" = "yes"; then
+  DF_NEO_TRUE=
+  DF_NEO_FALSE='#'
+else
+  DF_NEO_TRUE='#'
+  DF_NEO_FALSE=
+fi
+
+ if test "$spacedream" = "yes"; then
+  SPACEDREAM_TRUE=
+  SPACEDREAM_FALSE='#'
+else
+  SPACEDREAM_TRUE='#'
+  SPACEDREAM_FALSE=
+fi
+
+
 CFLAGS="$CFLAGS -Werror-implicit-function-declaration"
 
 DATADIR=$datadir/directfb-examples
@@ -4469,6 +4937,134 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${HAVE_STEREO_API_TRUE}" && test -z "${HAVE_STEREO_API_FALSE}"; then
   as_fn_error $? "conditional \"HAVE_STEREO_API\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_ANDI_TRUE}" && test -z "${DF_ANDI_FALSE}"; then
+  as_fn_error $? "conditional \"DF_ANDI\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_ANDI3D_TRUE}" && test -z "${DF_ANDI3D_FALSE}"; then
+  as_fn_error $? "conditional \"DF_ANDI3D\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_BLTLOAD_TRUE}" && test -z "${DF_BLTLOAD_FALSE}"; then
+  as_fn_error $? "conditional \"DF_BLTLOAD\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_CPULOAD_TRUE}" && test -z "${DF_CPULOAD_FALSE}"; then
+  as_fn_error $? "conditional \"DF_CPULOAD\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_DATABUFFER_TRUE}" && test -z "${DF_DATABUFFER_FALSE}"; then
+  as_fn_error $? "conditional \"DF_DATABUFFER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_DIOLOAD_TRUE}" && test -z "${DF_DIOLOAD_FALSE}"; then
+  as_fn_error $? "conditional \"DF_DIOLOAD\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_DOK_TRUE}" && test -z "${DF_DOK_FALSE}"; then
+  as_fn_error $? "conditional \"DF_DOK\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_DRIVERTEST_TRUE}" && test -z "${DF_DRIVERTEST_FALSE}"; then
+  as_fn_error $? "conditional \"DF_DRIVERTEST\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_DRIVERTEST2_TRUE}" && test -z "${DF_DRIVERTEST2_FALSE}"; then
+  as_fn_error $? "conditional \"DF_DRIVERTEST2\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_FIRE_TRUE}" && test -z "${DF_FIRE_FALSE}"; then
+  as_fn_error $? "conditional \"DF_FIRE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_FLIP_TRUE}" && test -z "${DF_FLIP_FALSE}"; then
+  as_fn_error $? "conditional \"DF_FLIP\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_FONTS_TRUE}" && test -z "${DF_FONTS_FALSE}"; then
+  as_fn_error $? "conditional \"DF_FONTS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_INPUT_TRUE}" && test -z "${DF_INPUT_FALSE}"; then
+  as_fn_error $? "conditional \"DF_INPUT\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_JOYSTICK_TRUE}" && test -z "${DF_JOYSTICK_FALSE}"; then
+  as_fn_error $? "conditional \"DF_JOYSTICK\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_LAYER_TRUE}" && test -z "${DF_LAYER_FALSE}"; then
+  as_fn_error $? "conditional \"DF_LAYER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_MATRIX_TRUE}" && test -z "${DF_MATRIX_FALSE}"; then
+  as_fn_error $? "conditional \"DF_MATRIX\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_MATRIX_WATER_TRUE}" && test -z "${DF_MATRIX_WATER_FALSE}"; then
+  as_fn_error $? "conditional \"DF_MATRIX_WATER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_NETLOAD_TRUE}" && test -z "${DF_NETLOAD_FALSE}"; then
+  as_fn_error $? "conditional \"DF_NETLOAD\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_PALETTE_TRUE}" && test -z "${DF_PALETTE_FALSE}"; then
+  as_fn_error $? "conditional \"DF_PALETTE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_PARTICLE_TRUE}" && test -z "${DF_PARTICLE_FALSE}"; then
+  as_fn_error $? "conditional \"DF_PARTICLE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_PORTER_TRUE}" && test -z "${DF_PORTER_FALSE}"; then
+  as_fn_error $? "conditional \"DF_PORTER\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_STRESS_TRUE}" && test -z "${DF_STRESS_FALSE}"; then
+  as_fn_error $? "conditional \"DF_STRESS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_TEXTURE_TRUE}" && test -z "${DF_TEXTURE_FALSE}"; then
+  as_fn_error $? "conditional \"DF_TEXTURE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_TEXTURE3D_TRUE}" && test -z "${DF_TEXTURE3D_FALSE}"; then
+  as_fn_error $? "conditional \"DF_TEXTURE3D\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_VIDEO_TRUE}" && test -z "${DF_VIDEO_FALSE}"; then
+  as_fn_error $? "conditional \"DF_VIDEO\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_VIDEO_PARTICLE_TRUE}" && test -z "${DF_VIDEO_PARTICLE_FALSE}"; then
+  as_fn_error $? "conditional \"DF_VIDEO_PARTICLE\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_WINDOW_TRUE}" && test -z "${DF_WINDOW_FALSE}"; then
+  as_fn_error $? "conditional \"DF_WINDOW\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${PSS_TRUE}" && test -z "${PSS_FALSE}"; then
+  as_fn_error $? "conditional \"PSS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${VE_TEST_TRUE}" && test -z "${VE_TEST_FALSE}"; then
+  as_fn_error $? "conditional \"VE_TEST\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_KNUCKLES_TRUE}" && test -z "${DF_KNUCKLES_FALSE}"; then
+  as_fn_error $? "conditional \"DF_KNUCKLES\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DF_NEO_TRUE}" && test -z "${DF_NEO_FALSE}"; then
+  as_fn_error $? "conditional \"DF_NEO\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${SPACEDREAM_TRUE}" && test -z "${SPACEDREAM_FALSE}"; then
+  as_fn_error $? "conditional \"SPACEDREAM\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
@@ -5627,9 +6223,74 @@ $as_echo "$as_me: WARNING: unrecognized options: $ac_unrecognized_opts" >&2;}
 fi
 
 
-
-if test -n "$WATER"; then
-   echo
-   echo Water $WATER
-fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result:
+Building Applications:
+df_andi                   $df_andi
+df_andi3d                 $df_andi3d
+df_bltload                $df_bltload
+df_cpuload                $df_cpuload
+df_databuffer             $df_databuffer
+df_dioload                $df_dioload
+df_dok                    $df_dok
+df_drivertest             $df_drivertest
+df_drivertest2            $df_drivertest2
+df_fire                   $df_fire
+df_flip                   $df_flip
+df_fonts                  $df_fonts
+df_input                  $df_input
+df_joystick               $df_joystick
+df_layer                  $df_layer
+df_matrix                 $df_matrix
+df_matrix_water           $df_matrix_water
+df_netload                $df_netload
+df_palette                $df_palette
+df_particle               $df_particle
+df_porter                 $df_porter
+df_stress                 $df_stress
+df_texture                $df_texture
+df_texture3d              $df_texture3d
+df_video                  $df_video
+df_video_particle         $df_video_particle
+df_window                 $df_window
+pss                       $pss
+ve_test                   $ve_test
+df_knuckles               $df_knuckles
+df_neo                    $df_neo
+spacedream                $spacedream
+" >&5
+$as_echo "
+Building Applications:
+df_andi                   $df_andi
+df_andi3d                 $df_andi3d
+df_bltload                $df_bltload
+df_cpuload                $df_cpuload
+df_databuffer             $df_databuffer
+df_dioload                $df_dioload
+df_dok                    $df_dok
+df_drivertest             $df_drivertest
+df_drivertest2            $df_drivertest2
+df_fire                   $df_fire
+df_flip                   $df_flip
+df_fonts                  $df_fonts
+df_input                  $df_input
+df_joystick               $df_joystick
+df_layer                  $df_layer
+df_matrix                 $df_matrix
+df_matrix_water           $df_matrix_water
+df_netload                $df_netload
+df_palette                $df_palette
+df_particle               $df_particle
+df_porter                 $df_porter
+df_stress                 $df_stress
+df_texture                $df_texture
+df_texture3d              $df_texture3d
+df_video                  $df_video
+df_video_particle         $df_video_particle
+df_window                 $df_window
+pss                       $pss
+ve_test                   $ve_test
+df_knuckles               $df_knuckles
+df_neo                    $df_neo
+spacedream                $spacedream
+" >&6; }
 

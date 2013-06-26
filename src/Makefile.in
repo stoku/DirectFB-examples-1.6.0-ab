@@ -51,17 +51,45 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-noinst_PROGRAMS = ve_test$(EXEEXT)
-bin_PROGRAMS = df_andi$(EXEEXT) df_bltload$(EXEEXT) \
-	df_drivertest$(EXEEXT) df_drivertest2$(EXEEXT) \
-	df_cpuload$(EXEEXT) df_databuffer$(EXEEXT) df_dok$(EXEEXT) \
-	df_fire$(EXEEXT) df_flip$(EXEEXT) df_fonts$(EXEEXT) \
-	df_input$(EXEEXT) df_joystick$(EXEEXT) df_layer$(EXEEXT) \
-	df_matrix$(EXEEXT) df_netload$(EXEEXT) df_dioload$(EXEEXT) \
-	df_palette$(EXEEXT) df_particle$(EXEEXT) df_porter$(EXEEXT) \
-	df_video$(EXEEXT) df_video_particle$(EXEEXT) \
-	df_stress$(EXEEXT) df_texture$(EXEEXT) df_window$(EXEEXT) \
-	pss$(EXEEXT) $(am__EXEEXT_1) $(am__EXEEXT_2)
+bin_PROGRAMS = $(am__EXEEXT_1) $(am__EXEEXT_2) $(am__EXEEXT_3) \
+	$(am__EXEEXT_4) $(am__EXEEXT_5) $(am__EXEEXT_6) \
+	$(am__EXEEXT_7) $(am__EXEEXT_8) $(am__EXEEXT_9) \
+	$(am__EXEEXT_10) $(am__EXEEXT_11) $(am__EXEEXT_12) \
+	$(am__EXEEXT_13) $(am__EXEEXT_14) $(am__EXEEXT_15) \
+	$(am__EXEEXT_16) $(am__EXEEXT_17) $(am__EXEEXT_18) \
+	$(am__EXEEXT_19) $(am__EXEEXT_20) $(am__EXEEXT_21) \
+	$(am__EXEEXT_22) $(am__EXEEXT_23) $(am__EXEEXT_24) \
+	$(am__EXEEXT_25) $(am__EXEEXT_26) $(am__EXEEXT_27) \
+	$(am__EXEEXT_28)
+@DF_ANDI_TRUE@am__append_1 = df_andi
+@DF_ANDI3D_TRUE@am__append_2 = df_andi3d
+@DF_BLTLOAD_TRUE@am__append_3 = df_bltload
+@DF_CPULOAD_TRUE@am__append_4 = df_cpuload
+@DF_DATABUFFER_TRUE@am__append_5 = df_databuffer
+@DF_DIOLOAD_TRUE@am__append_6 = df_dioload
+@DF_DOK_TRUE@am__append_7 = df_dok
+@DF_DRIVERTEST_TRUE@am__append_8 = df_drivertest
+@DF_DRIVERTEST2_TRUE@am__append_9 = df_drivertest2
+@DF_FIRE_TRUE@am__append_10 = df_fire
+@DF_FLIP_TRUE@am__append_11 = df_flip
+@DF_FONTS_TRUE@am__append_12 = df_fonts
+@DF_INPUT_TRUE@am__append_13 = df_input
+@DF_JOYSTICK_TRUE@am__append_14 = df_joystick
+@DF_LAYER_TRUE@am__append_15 = df_layer
+@DF_MATRIX_TRUE@am__append_16 = df_matrix
+@DF_MATRIX_WATER_TRUE@am__append_17 = df_matrix_water
+@DF_NETLOAD_TRUE@am__append_18 = df_netload
+@DF_PALETTE_TRUE@am__append_19 = df_palette
+@DF_PARTICLE_TRUE@am__append_20 = df_particle
+@DF_PORTER_TRUE@am__append_21 = df_porter
+@DF_STRESS_TRUE@am__append_22 = df_stress
+@DF_TEXTURE_TRUE@am__append_23 = df_texture
+@DF_TEXTURE3D_TRUE@am__append_24 = df_texture3d
+@DF_VIDEO_TRUE@am__append_25 = df_video
+@DF_VIDEO_PARTICLE_TRUE@am__append_26 = df_video_particle
+@DF_WINDOW_TRUE@am__append_27 = df_window
+@PSS_TRUE@am__append_28 = pss
+@VE_TEST_TRUE@noinst_PROGRAMS = ve_test$(EXEEXT)
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -71,9 +99,34 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-@HAVE_STEREO_API_TRUE@am__EXEEXT_1 = df_andi3d$(EXEEXT) \
-@HAVE_STEREO_API_TRUE@	df_texture3d$(EXEEXT)
-@WATER_RUNS_TRUE@am__EXEEXT_2 = df_matrix_water$(EXEEXT)
+@DF_ANDI_TRUE@am__EXEEXT_1 = df_andi$(EXEEXT)
+@DF_ANDI3D_TRUE@am__EXEEXT_2 = df_andi3d$(EXEEXT)
+@DF_BLTLOAD_TRUE@am__EXEEXT_3 = df_bltload$(EXEEXT)
+@DF_CPULOAD_TRUE@am__EXEEXT_4 = df_cpuload$(EXEEXT)
+@DF_DATABUFFER_TRUE@am__EXEEXT_5 = df_databuffer$(EXEEXT)
+@DF_DIOLOAD_TRUE@am__EXEEXT_6 = df_dioload$(EXEEXT)
+@DF_DOK_TRUE@am__EXEEXT_7 = df_dok$(EXEEXT)
+@DF_DRIVERTEST_TRUE@am__EXEEXT_8 = df_drivertest$(EXEEXT)
+@DF_DRIVERTEST2_TRUE@am__EXEEXT_9 = df_drivertest2$(EXEEXT)
+@DF_FIRE_TRUE@am__EXEEXT_10 = df_fire$(EXEEXT)
+@DF_FLIP_TRUE@am__EXEEXT_11 = df_flip$(EXEEXT)
+@DF_FONTS_TRUE@am__EXEEXT_12 = df_fonts$(EXEEXT)
+@DF_INPUT_TRUE@am__EXEEXT_13 = df_input$(EXEEXT)
+@DF_JOYSTICK_TRUE@am__EXEEXT_14 = df_joystick$(EXEEXT)
+@DF_LAYER_TRUE@am__EXEEXT_15 = df_layer$(EXEEXT)
+@DF_MATRIX_TRUE@am__EXEEXT_16 = df_matrix$(EXEEXT)
+@DF_MATRIX_WATER_TRUE@am__EXEEXT_17 = df_matrix_water$(EXEEXT)
+@DF_NETLOAD_TRUE@am__EXEEXT_18 = df_netload$(EXEEXT)
+@DF_PALETTE_TRUE@am__EXEEXT_19 = df_palette$(EXEEXT)
+@DF_PARTICLE_TRUE@am__EXEEXT_20 = df_particle$(EXEEXT)
+@DF_PORTER_TRUE@am__EXEEXT_21 = df_porter$(EXEEXT)
+@DF_STRESS_TRUE@am__EXEEXT_22 = df_stress$(EXEEXT)
+@DF_TEXTURE_TRUE@am__EXEEXT_23 = df_texture$(EXEEXT)
+@DF_TEXTURE3D_TRUE@am__EXEEXT_24 = df_texture3d$(EXEEXT)
+@DF_VIDEO_TRUE@am__EXEEXT_25 = df_video$(EXEEXT)
+@DF_VIDEO_PARTICLE_TRUE@am__EXEEXT_26 = df_video_particle$(EXEEXT)
+@DF_WINDOW_TRUE@am__EXEEXT_27 = df_window$(EXEEXT)
+@PSS_TRUE@am__EXEEXT_28 = pss$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS) $(noinst_PROGRAMS)
 am_df_andi_OBJECTS = df_andi.$(OBJEXT)
@@ -357,12 +410,6 @@ AM_CPPFLAGS = \
 	-DDATADIR=\"@DATADIR@\" \
 	-DFONT=\"$(fontsdatadir)/decker.ttf\"
 
-ve_test_SOURCES = ve_test.c ve.c ve.h
-ve_test_LDADD = $(LIBADDS) -lm
-@WATER_RUNS_FALSE@WATER_PROGS = 
-@WATER_RUNS_TRUE@WATER_PROGS = df_matrix_water
-@HAVE_STEREO_API_FALSE@STEREO_API_PROGS = 
-@HAVE_STEREO_API_TRUE@STEREO_API_PROGS = df_andi3d df_texture3d
 df_andi_SOURCES = df_andi.c 
 df_andi_LDADD = $(LIBADDS)
 df_andi3d_SOURCES = df_andi3d.c
@@ -419,6 +466,8 @@ df_window_SOURCES = df_window.c
 df_window_LDADD = $(LIBADDS) -lm
 pss_SOURCES = pss.c
 pss_LDADD = $(LIBADDS) -lm
+ve_test_SOURCES = ve_test.c ve.c ve.h
+ve_test_LDADD = $(LIBADDS) -lm
 all: all-recursive
 
 .SUFFIXES:

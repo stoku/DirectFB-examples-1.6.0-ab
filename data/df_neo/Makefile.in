@@ -199,7 +199,20 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 examplesdatadir = $(DATADIR)
-examplesdata_DATA = \
+@DF_INPUT_FALSE@@DF_NEO_FALSE@examplesdata_DATA = 
+@DF_INPUT_TRUE@@DF_NEO_FALSE@examplesdata_DATA = gnu-keys.png
+@DF_NEO_TRUE@examplesdata_DATA = \
+@DF_NEO_TRUE@	apple-red.png		\
+@DF_NEO_TRUE@	background.jpg		\
+@DF_NEO_TRUE@	gnome-applets.png	\
+@DF_NEO_TRUE@	gnome-calendar.png	\
+@DF_NEO_TRUE@	gnome-foot.png		\
+@DF_NEO_TRUE@	gnome-gimp.png		\
+@DF_NEO_TRUE@	gnome-gmush.png		\
+@DF_NEO_TRUE@	gnome-gsame.png		\
+@DF_NEO_TRUE@	gnu-keys.png
+
+EXTRA_DIST = \
 	apple-red.png		\
 	background.jpg		\
 	gnome-applets.png	\
@@ -210,7 +223,6 @@ examplesdata_DATA = \
 	gnome-gsame.png		\
 	gnu-keys.png
 
-EXTRA_DIST = $(examplesdata_DATA)
 all: all-am
 
 .SUFFIXES:

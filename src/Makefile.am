@@ -13,51 +13,123 @@ AM_CPPFLAGS = \
 	-DDATADIR=\"@DATADIR@\" \
 	-DFONT=\"$(fontsdatadir)/decker.ttf\"
 
+bin_PROGRAMS =
+
+if DF_ANDI
+bin_PROGRAMS += df_andi
+endif
+
+if DF_ANDI3D
+bin_PROGRAMS += df_andi3d
+endif
+
+if DF_BLTLOAD
+bin_PROGRAMS += df_bltload
+endif
+
+if DF_CPULOAD
+bin_PROGRAMS += df_cpuload
+endif
+
+if DF_DATABUFFER
+bin_PROGRAMS += df_databuffer
+endif
+
+if DF_DIOLOAD
+bin_PROGRAMS += df_dioload
+endif
+
+if DF_DOK
+bin_PROGRAMS += df_dok
+endif
+
+if DF_DRIVERTEST
+bin_PROGRAMS += df_drivertest
+endif
+
+if DF_DRIVERTEST2
+bin_PROGRAMS += df_drivertest2
+endif
+
+if DF_FIRE
+bin_PROGRAMS += df_fire
+endif
+
+if DF_FLIP
+bin_PROGRAMS += df_flip
+endif
+
+if DF_FONTS
+bin_PROGRAMS += df_fonts
+endif
+
+if DF_INPUT
+bin_PROGRAMS += df_input
+endif
+
+if DF_JOYSTICK
+bin_PROGRAMS += df_joystick
+endif
+
+if DF_LAYER
+bin_PROGRAMS += df_layer
+endif
+
+if DF_MATRIX
+bin_PROGRAMS += df_matrix
+endif
+
+if DF_MATRIX_WATER
+bin_PROGRAMS += df_matrix_water
+endif
+
+if DF_NETLOAD
+bin_PROGRAMS += df_netload
+endif
+
+if DF_PALETTE
+bin_PROGRAMS += df_palette
+endif
+
+if DF_PARTICLE
+bin_PROGRAMS += df_particle
+endif
+
+if DF_PORTER
+bin_PROGRAMS += df_porter
+endif
+
+if DF_STRESS
+bin_PROGRAMS += df_stress
+endif
+
+if DF_TEXTURE
+bin_PROGRAMS += df_texture
+endif
+
+if DF_TEXTURE3D
+bin_PROGRAMS += df_texture3d
+endif
+
+if DF_VIDEO
+bin_PROGRAMS += df_video
+endif
+
+if DF_VIDEO_PARTICLE
+bin_PROGRAMS += df_video_particle
+endif
+
+if DF_WINDOW
+bin_PROGRAMS += df_window
+endif
+
+if PSS
+bin_PROGRAMS += pss
+endif
+
+if VE_TEST
 noinst_PROGRAMS = ve_test
-
-ve_test_SOURCES = ve_test.c ve.c ve.h
-ve_test_LDADD   = $(LIBADDS) -lm
-
-if WATER_RUNS
-WATER_PROGS = df_matrix_water
-else
-WATER_PROGS =
 endif
-
-if HAVE_STEREO_API
-STEREO_API_PROGS = df_andi3d df_texture3d
-else
-STEREO_API_PROGS =
-endif
-
-bin_PROGRAMS = \
-	df_andi \
-	df_bltload \
-	df_drivertest \
-	df_drivertest2 \
-	df_cpuload \
-	df_databuffer \
-	df_dok \
-	df_fire \
-	df_flip \
-	df_fonts \
-	df_input \
-	df_joystick \
-	df_layer \
-	df_matrix \
-	df_netload \
-	df_dioload \
-	df_palette \
-	df_particle \
-	df_porter \
-	df_video \
-	df_video_particle \
-	df_stress \
-	df_texture \
-	df_window \
-	pss \
-	$(STEREO_API_PROGS) \
-	$(WATER_PROGS)
 
 df_andi_SOURCES = df_andi.c 
 df_andi_LDADD  = $(LIBADDS)
@@ -142,3 +214,7 @@ df_window_LDADD  = $(LIBADDS) -lm
 
 pss_SOURCES = pss.c
 pss_LDADD = $(LIBADDS) -lm
+
+ve_test_SOURCES = ve_test.c ve.c ve.h
+ve_test_LDADD   = $(LIBADDS) -lm
+
