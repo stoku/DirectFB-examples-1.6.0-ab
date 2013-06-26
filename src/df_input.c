@@ -638,6 +638,40 @@ struct _DeviceInfo {
      DeviceInfo                *next;
 };
 
+static void
+load_keymaps( DFBInputDeviceID device_id )
+{
+     DFBResult err;
+     IDirectFBInputDevice *device;
+     char *keymaps, *keymap, *next;
+
+     keymaps = getenv( "KEYMAP" );
+     if (!keymaps)
+          return;
+
+     keymaps = strdup( keymaps );
+     if (!keymaps) {
+          fprintf( stderr, "Failed to copy KEYMAP environment variables\n" );
+          return;
+     }
+
+     DFBCHECK( dfb->GetInputDevice( dfb, device_id, &device ));
+
+     keymap = keymaps;
+     while (keymap) {
+          next = strchr( keymap, ':' );
+          if (next)
+               *(next++) = '\0';
+          err = device->LoadKeymap( device, keymap );
+          if (err != DFB_OK)
+               fprintf( stderr, "Failed to load keymap %s (%s)\n",
+                        keymap, DirectFBErrorString( err ) );
+          keymap = next;
+     }
+
+     free( keymaps );
+}
+
 static DFBEnumerationResult
 add_input_device( DFBInputDeviceID           device_id,
                   DFBInputDeviceDescription  desc,
@@ -664,6 +698,9 @@ add_input_device( DFBInputDeviceID           device_id,
      *devices = device;
 
      printf("Device %d (%s) is added\n", device_id, desc.name );
+
+     if (desc.type == DIDTF_KEYBOARD)
+          load_keymaps( device_id );
 
      return DFENUM_OK;
 }
