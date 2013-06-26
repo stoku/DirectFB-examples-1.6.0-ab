@@ -639,12 +639,21 @@ struct _DeviceInfo {
 };
 
 static DFBEnumerationResult
-enum_input_device( DFBInputDeviceID           device_id,
-                   DFBInputDeviceDescription  desc,
-                   void                      *data )
+add_input_device( DFBInputDeviceID           device_id,
+                  DFBInputDeviceDescription  desc,
+                  void                      *data )
 {
      DeviceInfo **devices = data;
      DeviceInfo  *device;
+
+     device = *devices;
+     while (device) {
+          if (device->device_id == device_id) {
+               fprintf( stderr, "Device %d is already exist\n", device_id );
+               return DFENUM_OK;
+          }
+          device = device->next;
+     }
 
      device = malloc( sizeof(DeviceInfo) );
 
@@ -654,7 +663,36 @@ enum_input_device( DFBInputDeviceID           device_id,
 
      *devices = device;
 
+     printf("Device %d (%s) is added\n", device_id, desc.name );
+
      return DFENUM_OK;
+}
+
+static void
+remove_input_device( DFBInputDeviceID   device_id,
+                     DeviceInfo       **devices )
+{
+     DeviceInfo *device, *prev;
+
+     prev   = NULL;
+     device = *devices;
+     while (device && (device->device_id != device_id)) {
+          prev   = device;
+          device = prev->next;
+     }
+
+     if (!device) {
+          fprintf( stderr, "Couldn't find device %d\n", device_id );
+     }
+     else {
+          if (!prev)
+               *devices = device->next;
+          else
+               prev->next = device->next;
+
+          printf("Device %d (%s) is removed\n", device_id, device->desc.name );
+          free( device );
+     }
 }
 
 const char *
@@ -729,7 +767,7 @@ main( int argc, char *argv[] )
      DFBCHECK(DirectFBCreate( &dfb ));
 
      /* create a list of input devices */
-     dfb->EnumInputDevices( dfb, enum_input_device, &devices );
+     dfb->EnumInputDevices( dfb, add_input_device, &devices );
 
      /* create an event buffer for all devices */
      DFBCHECK(dfb->CreateInputEventBuffer( dfb, DICAPS_ALL,
@@ -788,17 +826,32 @@ main( int argc, char *argv[] )
                DFBInputEvent evt;
 
                while (events->GetEvent( events, DFB_EVENT(&evt) ) == DFB_OK) {
-                    const char *device_name;
-                    DFBInputDeviceTypeFlags device_type;
 
-                    primary->Clear( primary, 0, 0, 0, 0 );
+                    if (evt.type == DIET_DEVICEADD) {
+                         IDirectFBInputDevice *device;
+                         DFBInputDeviceDescription desc;
 
-                    device_name  = get_device_name( devices, evt.device_id );
-                    device_type  = get_device_type( devices, evt.device_id );
-                     
-                    show_event( device_name, device_type, &evt );
-	
-                    primary->Flip( primary, NULL, 0 );
+                         DFBCHECK(dfb->GetInputDevice( dfb, evt.device_id, &device ));
+                         DFBCHECK(device->GetDescription( device, &desc ));
+                         add_input_device( evt.device_id, desc, &devices );
+                         DFBCHECK(device->Release( device ));
+                    }
+                    else if (evt.type == DIET_DEVICEREMOVE) {
+                         remove_input_device( evt.device_id, &devices );
+                    }
+                    else {
+                         const char *device_name;
+                         DFBInputDeviceTypeFlags device_type;
+
+                         primary->Clear( primary, 0, 0, 0, 0 );
+
+                         device_name  = get_device_name( devices, evt.device_id );
+                         device_type  = get_device_type( devices, evt.device_id );
+
+                         show_event( device_name, device_type, &evt );
+
+                         primary->Flip( primary, NULL, 0 );
+                    }
                }
 
                if (evt.type == DIET_KEYRELEASE) {
